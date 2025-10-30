@@ -61,6 +61,7 @@ Each file in the `problems/` directory represents a category of problems, paired
 
 ```bash
 git clone https://github.com/cmbenello/141-discussion.git
+codium 141-discussion # This is whereever you saved it like just type codium file location and open it up
 ```
 
 ### 1. Create and Activate a Virtual Environment
@@ -250,7 +251,7 @@ Flags:
 python scripts/drill_prompts.py --extra 4 --per 2
 
 # 2. Edit your solution
-vim problems/expressions.py
+codium problems/expressions.py
 
 # 3. Test one file
 pytest -q tests/expressions_tests.py
@@ -261,10 +262,7 @@ less solutions/expressions_sols.py
 
 ---
 
-## Credits
-
-Developed for CMSC 141 - Discussion Practice  
-Designed by Charles Benello for structured, concept-oriented learning across Python fundamentals.
+I am confident all of you will do great! (ㅇㅅㅇ)/
 
 ---
 
