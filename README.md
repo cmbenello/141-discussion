@@ -51,7 +51,6 @@ Each file in the `problems/` directory represents a category of problems, paired
 1) **Run the assessment** (`problems/assessment.py`) to gauge your baseline.
 2) **Tackle Extra Questions early** (`problems/extra_qs.py`). These “guess the output” drills expose scope, mutability, copying, and truthiness pitfalls that aren’t intuitive. They will make the later coding problems easier.
 3) Move on to the topic files (`expressions.py`, `conditional_loops.py`, `strings_list.py`), using tags and difficulty to focus your practice.
-4) Optionally, try `tables.py` for nested‑loop and 2‑D data practice.
 
 ---
 
@@ -108,6 +107,16 @@ pytest -q -k "expr_24_middle_three"
 
 ---
 
+## Recommended Study Order
+
+1. Assessment — quick self‑diagnosis (run this first).
+2. Extra Questions — conceptual edge cases (do these early; they’re not intuitive).
+3. Expressions — arithmetic and boolean logic.
+4. Conditional Loops — `if`, `for`, `while`, and iteration patterns.
+5. Strings & Lists — slicing, comprehension, transformations.
+
+---
+
 ## Problem Categories
 
 Each problem file focuses on a specific conceptual area:
@@ -119,7 +128,6 @@ Each problem file focuses on a specific conceptual area:
 | `conditional_loops.py` | Flow control | `if`, `for`, `while`, range, iteration |
 | `strings_list.py` | Sequence data | String parsing, slicing, comprehension, transformations |
 | `extra_qs.py` | Conceptual reasoning (do these right after the assessment) | Scoping, mutability, copying, truthiness |
-| `tables.py` | Structured data (optional) | Nested loops and indexing over data tables |
 
 ---
 
@@ -221,17 +229,6 @@ Flags:
 - `--all` — list all available problems
 - `--extra <n>` — number of extra conceptual questions (default: 6)
 - `--per <n>` — number of normal problems per topic (default: 3)
-
----
-
-## Recommended Study Order
-
-1. Assessment — quick self‑diagnosis (run this first).
-2. Extra Questions — conceptual edge cases (do these early; they’re not intuitive).
-3. Expressions — arithmetic and boolean logic.
-4. Conditional Loops — `if`, `for`, `while`, and iteration patterns.
-5. Strings & Lists — slicing, comprehension, transformations.
-6. Tables (optional) — multi‑level iteration and data structures.
 
 ---
 
