@@ -38,6 +38,13 @@ if USE_SOLUTIONS:
     except Exception:
         pass
 
+    # strings_list
+    try:
+        import solutions.strings_list_sols as _SOL_SL
+        _alias_module(_SOL_SL, "problems.strings_list")
+    except Exception:
+        pass
+
 # 3) Keep any module-level counters tidy across tests.
 @pytest.fixture(autouse=True)
 def _reset_global_counter():
