@@ -1,271 +1,631 @@
 """
-CMSC 14100 — Conditionals & Loops Practice Set
----------------------------------------------
-40 problems focusing on branching, iteration, and boolean reasoning.
+conditional_loops.py
 
-Students should solve using `if`, `elif`, `else`, and loops as appropriate.
-Avoid importing libraries unless otherwise specified.
+Curated loop-centric problems (exam/LeetCode style) organized with categories, tags, and difficulty.
+Each function contains a precise docstring, Args/Returns, and **Examples**.
+Student stubs raise ValueError("todo") — solutions live in solutions/conditional_loops_sols.py
+and tests resolve to solutions when the environment variable USE_SOLUTIONS=1.
 """
 
-# ------------------ Basic conditionals (1–10) ------------------
+from __future__ import annotations
+from typing import List, Tuple, Optional
+
+
+# =====================================================================================
+# Table of Contents
+# =====================================================================================
+# 1) Numeric Iteration & Accumulation
+#    - cl_01_sum_even_up_to
+#    - cl_02_product_multiples_range
+#    - cl_13_collatz_steps
+#    - cl_14_gcd_euclid
+#    - cl_15_pow_int
+#
+# 2) Filtering, Searching & Early Exit
+#    - cl_03_count_divisible
+#    - cl_04_first_index_gt
+#    - cl_05_last_index_lt
+#    - cl_06_has_adjacent_equal
+#    - cl_07_first_strict_increase_pair
+#    - cl_08_longest_run_equal
+#    - cl_09_is_alternating_parity
+#    - cl_10_first_violation_max_step
+#    - cl_11_two_sum_exists
+#    - cl_12_sliding_window_max_sum
+#
+# 3) String & Sequence Iteration (1D)
+#    - cl_23_count_substring
+#    - cl_24_run_length_encode_counts
+#    - cl_25_is_palindrome_ignoring_nonalpha
+#    - cl_26_caesar_shift
+#    - cl_27_all_unique_chars_ascii
+#    - cl_28_rotate_left
+#    - cl_29_partition_even_odd_stable
+#    - cl_30_merge_two_sorted
+#
+# 4) Patterns & Grids (ASCII Art)
+#    - cl_16_triangle_pattern
+#    - cl_17_hollow_box
+#    - cl_18_checkerboard
+#    - cl_19_right_aligned_triangle
+#    - cl_20_diamond_odd
+#
+# 5) Lists of Lists (Table-ish)
+#    - cl_21_multiplication_table
+#    - cl_22_fizzbuzz
+#
+# Note: Some functions conceptually fit multiple categories; we place them by primary skill.
+# =====================================================================================
+
+
+# =====================================================================================
+# 1) Numeric Iteration & Accumulation
+# =====================================================================================
+
+def cl_01_sum_even_up_to(n: int) -> int:
+    """
+    Category: Numeric Iteration & Accumulation | Tags: range, accumulation, parity | Difficulty: 1
+
+    Return the sum of all even integers in [0, n] inclusive. If n < 0, sum evens down to n (e.g., n = -3 -> -2).
+
+    Args:
+        n (int): endpoint (inclusive)
+
+    Returns:
+        int: sum of even integers from 0 to n (or from n to 0 if n < 0)
+
+    Examples:
+        >>> cl_01_sum_even_up_to(6)
+        12    # 0+2+4+6
+        >>> cl_01_sum_even_up_to(-5)
+        -6    # -4 + -2 + 0 (but 0 contributes nothing)
+    """
+    raise ValueError("todo")
+
+
+def cl_02_product_multiples_range(a: int, b: int, k: int) -> int:
+    """
+    Category: Numeric Iteration & Accumulation | Tags: range, product, divisibility | Difficulty: 2
+
+    Compute the product of all integers x in the inclusive range [a, b] such that x % k == 0.
+    If there are no such x, return 1 (empty-product convention). Assume a <= b and k != 0.
+
+    Args:
+        a (int): start (inclusive)
+        b (int): end (inclusive)
+        k (int): divisor (non-zero)
+
+    Returns:
+        int: product of all multiples of k within [a, b], or 1 if none
+
+    Examples:
+        >>> cl_02_product_multiples_range(1, 10, 3)
+        18    # 3*6
+        >>> cl_02_product_multiples_range(5, 7, 10)
+        1
+    """
+    raise ValueError("todo")
+
+
+def cl_13_collatz_steps(n: int, cap: int) -> int:
+    """
+    Category: Numeric Iteration & Accumulation | Tags: collatz, loop_bounded | Difficulty: 3
 
-def cl01_sign(n: int) -> str:
-    """Return 'positive', 'negative', or 'zero' for n."""
-    raise ValueError("todo: cl01_sign")
+    Compute how many steps it takes to reach 1 under the Collatz map:
+      - if n is even -> n = n//2
+      - if n is odd  -> n = 3*n + 1
+    Stop early if you perform 'cap' steps without reaching 1, and return 'cap'.
+    Precondition: n >= 1, cap >= 0.
 
+    Args:
+        n (int): starting value (>=1)
+        cap (int): maximum steps to simulate
 
-def cl02_max2(a: int, b: int) -> int:
-    """Return the larger of a and b using if-else."""
-    raise ValueError("todo: cl02_max2")
+    Returns:
+        int: steps taken to reach 1, or 'cap' if 1 not reached in time
 
+    Examples:
+        >>> cl_13_collatz_steps(1, 10)
+        0
+        >>> cl_13_collatz_steps(3, 100)
+        7
+    """
+    raise ValueError("todo")
 
-def cl03_abs_val(n: int) -> int:
-    """Return |n| using if instead of abs()."""
-    raise ValueError("todo: cl03_abs_val")
 
+def cl_14_gcd_euclid(a: int, b: int) -> int:
+    """
+    Category: Numeric Iteration & Accumulation | Tags: gcd, loop, math | Difficulty: 2
 
-def cl04_min3(a: int, b: int, c: int) -> int:
-    """Return minimum of three integers."""
-    raise ValueError("todo: cl04_min3")
+    Compute gcd(a, b) using the iterative Euclidean algorithm.
+    gcd(a, 0) == |a|; ensure non-negative result.
 
+    Args:
+        a (int)
+        b (int)
 
-def cl05_same_sign(a: int, b: int) -> bool:
-    """True iff both a and b are nonnegative or both nonpositive."""
-    raise ValueError("todo: cl05_same_sign")
+    Returns:
+        int: greatest common divisor
 
+    Examples:
+        >>> cl_14_gcd_euclid(54, 24)
+        6
+        >>> cl_14_gcd_euclid(7, 1)
+        1
+    """
+    raise ValueError("todo")
 
-def cl06_grade(score: float) -> str:
-    """Return letter grade A/B/C/D/F using standard 90-80-70-60 cutoffs."""
-    raise ValueError("todo: cl06_grade")
 
+def cl_15_pow_int(x: int, n: int) -> int:
+    """
+    Category: Numeric Iteration & Accumulation | Tags: pow, accumulation | Difficulty: 2
 
-def cl07_parity_word(n: int) -> str:
-    """Return 'even' or 'odd'."""
-    raise ValueError("todo: cl07_parity_word")
+    Compute x**n for n >= 0 using repeated multiplication (no built-in pow).
+    Precondition: n >= 0.
 
+    Args:
+        x (int): base
+        n (int): non-negative exponent
 
-def cl08_sign_magnitude(x: int) -> tuple[str, int]:
-    """Return (sign, magnitude) where sign is '+', '-', or '0'."""
-    raise ValueError("todo: cl08_sign_magnitude")
+    Returns:
+        int: x raised to the n
 
+    Examples:
+        >>> cl_15_pow_int(2, 0)
+        1
+        >>> cl_15_pow_int(3, 4)
+        81
+    """
+    raise ValueError("todo")
 
-def cl09_compare(a: int, b: int) -> str:
-    """Return 'less', 'equal', or 'greater'."""
-    raise ValueError("todo: cl09_compare")
 
+# =====================================================================================
+# 2) Filtering, Searching & Early Exit
+# =====================================================================================
 
-def cl10_safe_div(a: float, b: float) -> float | None:
-    """Return a/b if b != 0 else None."""
-    raise ValueError("todo: cl10_safe_div")
+def cl_03_count_divisible(lst: List[int], k: int) -> int:
+    """
+    Category: Filtering, Searching & Early Exit | Tags: count, divisibility | Difficulty: 1
 
+    Count how many elements in lst are divisible by k (assume k != 0).
 
-# ------------------ Loops: counting and summing (11–20) ------------------
+    Args:
+        lst (List[int]): values
+        k (int): divisor (non-zero)
 
-def cl11_sum_n(n: int) -> int:
-    """Return sum 1+2+...+n using a loop."""
-    raise ValueError("todo: cl11_sum_n")
+    Returns:
+        int: count of elements x with x % k == 0
 
+    Examples:
+        >>> cl_03_count_divisible([3, 6, 7, 12], 3)
+        3
+        >>> cl_03_count_divisible([], 5)
+        0
+    """
+    raise ValueError("todo")
 
-def cl12_sum_even(n: int) -> int:
-    """Return sum of even numbers up to n inclusive."""
-    raise ValueError("todo: cl12_sum_even")
 
+def cl_04_first_index_gt(lst: List[int], x: int) -> Optional[int]:
+    """
+    Category: Filtering, Searching & Early Exit | Tags: search, first_match, early_exit | Difficulty: 2
 
-def cl13_factorial(n: int) -> int:
-    """Return n! (assume n>=0)."""
-    raise ValueError("todo: cl13_factorial")
+    Return the first index i such that lst[i] > x, or None if no such index exists.
 
+    Args:
+        lst (List[int])
+        x (int)
 
-def cl14_count_digits(n: int) -> int:
-    """Return number of digits in n (use integer division)."""
-    raise ValueError("todo: cl14_count_digits")
+    Returns:
+        Optional[int]: first index with value > x, or None
 
+    Examples:
+        >>> cl_04_first_index_gt([1, 5, 5, 9], 5)
+        3
+        >>> cl_04_first_index_gt([1, 2], 10)
+        None
+    """
+    raise ValueError("todo")
 
-def cl15_power(base: int, exp: int) -> int:
-    """Return base**exp using a loop (nonnegative exp)."""
-    raise ValueError("todo: cl15_power")
 
+def cl_05_last_index_lt(lst: List[int], x: int) -> Optional[int]:
+    """
+    Category: Filtering, Searching & Early Exit | Tags: search, last_match | Difficulty: 2
 
-def cl16_sum_list(nums: list[int]) -> int:
-    """Sum all numbers in list using a for-loop."""
-    raise ValueError("todo: cl16_sum_list")
+    Return the last index i such that lst[i] < x, or None if no such index exists.
 
+    Examples:
+        >>> cl_05_last_index_lt([1, 5, 5, 9], 5)
+        0
+        >>> cl_05_last_index_lt([], 0)
+        None
+    """
+    raise ValueError("todo")
 
-def cl17_count_negatives(nums: list[int]) -> int:
-    """Return count of negative numbers in list."""
-    raise ValueError("todo: cl17_count_negatives")
 
+def cl_06_has_adjacent_equal(lst: List[int]) -> bool:
+    """
+    Category: Filtering, Searching & Early Exit | Tags: validation, adjacent | Difficulty: 1
 
-def cl18_product_list(nums: list[int]) -> int:
-    """Return product of all numbers (1 if empty)."""
-    raise ValueError("todo: cl18_product_list")
+    Return True iff the list contains two equal adjacent elements.
 
+    Examples:
+        >>> cl_06_has_adjacent_equal([1, 2, 2, 3])
+        True
+        >>> cl_06_has_adjacent_equal([1, 2, 3])
+        False
+    """
+    raise ValueError("todo")
 
-def cl19_contains_zero(nums: list[int]) -> bool:
-    """Return True if 0 appears in nums, else False."""
-    raise ValueError("todo: cl19_contains_zero")
 
+def cl_07_first_strict_increase_pair(lst: List[int]) -> Optional[int]:
+    """
+    Category: Filtering, Searching & Early Exit | Tags: search, first_match | Difficulty: 2
 
-def cl20_first_even(nums: list[int]) -> int | None:
-    """Return first even number or None if none exist."""
-    raise ValueError("todo: cl20_first_even")
+    Return the first index i such that lst[i] < lst[i+1]. If not found or len(lst) < 2, return None.
 
+    Examples:
+        >>> cl_07_first_strict_increase_pair([5, 4, 3])
+        None
+        >>> cl_07_first_strict_increase_pair([3, 3, 4])
+        1
+    """
+    raise ValueError("todo")
 
-# ------------------ Nested loops and conditionals (21–30) ------------------
 
-def cl21_multiplication_table(n: int) -> list[list[int]]:
-    """Return an n×n multiplication table (list of lists)."""
-    raise ValueError("todo: cl21_multiplication_table")
+def cl_08_longest_run_equal(lst: List[int]) -> int:
+    """
+    Category: Filtering, Searching & Early Exit | Tags: runs, scan | Difficulty: 3
 
+    Return the length of the longest run of equal adjacent values.
+    For an empty list, return 0. For a 1-element list, return 1.
 
-def cl22_square_pattern(n: int) -> str:
-    """Return an n×n square of '*' separated by newlines."""
-    raise ValueError("todo: cl22_square_pattern")
+    Examples:
+        >>> cl_08_longest_run_equal([1,1,2,2,2,3])
+        3
+        >>> cl_08_longest_run_equal([])
+        0
+    """
+    raise ValueError("todo")
 
 
-def cl23_triangle_pattern(n: int) -> str:
-    """Return right triangle pattern of '*' of height n."""
-    raise ValueError("todo: cl23_triangle_pattern")
+def cl_09_is_alternating_parity(lst: List[int]) -> bool:
+    """
+    Category: Filtering, Searching & Early Exit | Tags: validation, parity, early_exit | Difficulty: 2
 
+    Return True iff the list alternates even/odd/evens… (any starting parity).
+    Lists of length < 2 are considered alternating.
 
-def cl24_sum_nested(lst: list[list[int]]) -> int:
-    """Return total sum of all elements in nested list of ints."""
-    raise ValueError("todo: cl24_sum_nested")
+    Examples:
+        >>> cl_09_is_alternating_parity([2, 5, 4, 9, 6])
+        True
+        >>> cl_09_is_alternating_parity([2, 4, 6])
+        False
+    """
+    raise ValueError("todo")
 
 
-def cl25_find_min_nested(lst: list[list[int]]) -> int:
-    """Return minimum element from nested list of ints."""
-    raise ValueError("todo: cl25_find_min_nested")
+def cl_10_first_violation_max_step(lst: List[int], max_step: int) -> Optional[int]:
+    """
+    Category: Filtering, Searching & Early Exit | Tags: scan, constraint, early_exit | Difficulty: 3
 
+    Given a sequence of integers, return the first index i>0 where abs(lst[i] - lst[i-1]) > max_step.
+    Return None if no violation exists or if len(lst) < 2.
 
-def cl26_count_vowels(s: str) -> int:
-    """Return number of vowels in string s."""
-    raise ValueError("todo: cl26_count_vowels")
+    Examples:
+        >>> cl_10_first_violation_max_step([1,3,5,8,9], 2)
+        3
+        >>> cl_10_first_violation_max_step([1,2,3], 5)
+        None
+    """
+    raise ValueError("todo")
 
 
-def cl27_remove_spaces(s: str) -> str:
-    """Return s with all spaces removed using loop + concatenation."""
-    raise ValueError("todo: cl27_remove_spaces")
+def cl_11_two_sum_exists(sorted_lst: List[int], target: int) -> bool:
+    """
+    Category: Filtering, Searching & Early Exit | Tags: two_pointer, early_exit | Difficulty: 3
 
+    Given a sorted list (non-decreasing), return True iff there exist i<j with sorted_lst[i]+sorted_lst[j]==target.
+    Use a classic two-pointer sweep (no sets/dicts).
 
-def cl28_reverse_string(s: str) -> str:
-    """Return reversed string using loop (no slicing)."""
-    raise ValueError("todo: cl28_reverse_string")
+    Examples:
+        >>> cl_11_two_sum_exists([1,2,4,6,10], 8)
+        True    # 2+6
+        >>> cl_11_two_sum_exists([1,2,4,6,10], 3)
+        False
+    """
+    raise ValueError("todo")
 
 
-def cl29_is_palindrome(s: str) -> bool:
-    """True iff s reads the same forward and backward (case-sensitive)."""
-    raise ValueError("todo: cl29_is_palindrome")
+def cl_12_sliding_window_max_sum(lst: List[int], k: int) -> int:
+    """
+    Category: Filtering, Searching & Early Exit | Tags: sliding_window, accumulation | Difficulty: 4
 
+    Return the maximum sum of any contiguous subarray of length k.
+    Raise ValueError if k <= 0 or k > len(lst).
 
-def cl30_count_words(s: str) -> int:
-    """Return number of words separated by spaces (no split())."""
-    raise ValueError("todo: cl30_count_words")
+    Examples:
+        >>> cl_12_sliding_window_max_sum([1,3,-2,5,3], 2)
+        8   # window [5,3]
+        >>> cl_12_sliding_window_max_sum([5], 1)
+        5
+    """
+    raise ValueError("todo")
 
 
-# ------------------ Applied logic & loops (31–40) ------------------
+# =====================================================================================
+# 3) String & Sequence Iteration (1D)
+# =====================================================================================
 
-def cl31_fizzbuzz(n: int) -> list[str]:
-    """Return FizzBuzz list for 1..n inclusive."""
-    raise ValueError("todo: cl31_fizzbuzz")
+def cl_23_count_substring(s: str, sub: str) -> int:
+    """
+    Category: String & Sequence Iteration | Tags: scan, overlapping, substring | Difficulty: 2
 
+    Count overlapping occurrences of 'sub' inside 's'.
+    Precondition: len(sub) >= 1.
 
-def cl32_sum_until_negative(nums: list[int]) -> int:
-    """Sum numbers until a negative is found (exclusive)."""
-    raise ValueError("todo: cl32_sum_until_negative")
+    Examples:
+        >>> cl_23_count_substring("aaaa", "aa")
+        3
+        >>> cl_23_count_substring("abc", "x")
+        0
+    """
+    raise ValueError("todo")
 
 
-def cl33_index_of_max(nums: list[int]) -> int | None:
-    """Return index of first maximum value or None if empty."""
-    raise ValueError("todo: cl33_index_of_max")
+def cl_24_run_length_encode_counts(s: str) -> List[Tuple[str, int]]:
+    """
+    Category: String & Sequence Iteration | Tags: run_length, compression | Difficulty: 3
 
+    Return a run-length encoding as a list of (char, count) tuples.
 
-def cl34_find_primes_upto(n: int) -> list[int]:
-    """Return list of primes ≤ n (naive check)."""
-    raise ValueError("todo: cl34_find_primes_upto")
+    Examples:
+        >>> cl_24_run_length_encode_counts("aaabbc")
+        [('a', 3), ('b', 2), ('c', 1)]
+        >>> cl_24_run_length_encode_counts("")
+        []
+    """
+    raise ValueError("todo")
 
 
-def cl35_gcd(a: int, b: int) -> int:
-    """Return gcd of a,b using Euclidean algorithm."""
-    raise ValueError("todo: cl35_gcd")
+def cl_25_is_palindrome_ignoring_nonalpha(s: str) -> bool:
+    """
+    Category: String & Sequence Iteration | Tags: filter, palindrome, two_pointer | Difficulty: 3
 
+    Return True iff s is a palindrome when considering only alphabetic characters and ignoring case.
 
-def cl36_lcm(a: int, b: int) -> int:
-    """Return least common multiple using gcd() result."""
-    raise ValueError("todo: cl36_lcm")
+    Examples:
+        >>> cl_25_is_palindrome_ignoring_nonalpha("Madam, I'm Adam")
+        True
+        >>> cl_25_is_palindrome_ignoring_nonalpha("Chicago")
+        False
+    """
+    raise ValueError("todo")
 
 
-def cl37_sum_of_digits(n: int) -> int:
-    """Return sum of digits of n (nonnegative)."""
-    raise ValueError("todo: cl37_sum_of_digits")
+def cl_26_caesar_shift(s: str, k: int) -> str:
+    """
+    Category: String & Sequence Iteration | Tags: ascii, shift, letters_only | Difficulty: 3
 
+    Shift A..Z and a..z by k (can be negative), wrapping within case.
+    Non-letters unchanged.
 
-def cl38_binary_to_decimal(bits: str) -> int:
-    """Convert binary string (e.g., '1011') to decimal int."""
-    raise ValueError("todo: cl38_binary_to_decimal")
+    Examples:
+        >>> cl_26_caesar_shift("Abz!", 1)
+        'Bca!'
+        >>> cl_26_caesar_shift("Abz!", -1)
+        'Zay!'
+    """
+    raise ValueError("todo")
 
 
-def cl39_guess_number(secret: int, guesses: list[int]) -> str:
-    """Return feedback string: first 'correct', else last guess relation ('too high'/'too low')."""
-    raise ValueError("todo: cl39_guess_number")
+def cl_27_all_unique_chars_ascii(s: str) -> bool:
+    """
+    Category: String & Sequence Iteration | Tags: ascii, frequency, validation | Difficulty: 3
 
+    Return True iff all characters in s are unique (ASCII only, ord 0..127).
+    Do not use set(); use a fixed-size frequency array via loops.
+
+    Examples:
+        >>> cl_27_all_unique_chars_ascii("abcd")
+        True
+        >>> cl_27_all_unique_chars_ascii("abca")
+        False
+    """
+    raise ValueError("todo")
 
-def cl40_collatz_steps(n: int) -> int:
-    """Return number of steps to reach 1 via Collatz sequence."""
-    raise ValueError("todo: cl40_collatz_steps")
 
+def cl_28_rotate_left(lst: List[int], k: int) -> List[int]:
+    """
+    Category: String & Sequence Iteration | Tags: rotation, slice_free_loop | Difficulty: 2
 
-# ------------------ Searching & scanning (41–45) ------------------
+    Return a new list equal to lst rotated left by k positions (k can be any int, normalize by len).
+    For empty lst, return [].
+
+    Examples:
+        >>> cl_28_rotate_left([1,2,3,4,5], 2)
+        [3, 4, 5, 1, 2]
+        >>> cl_28_rotate_left([], 7)
+        []
+    """
+    raise ValueError("todo")
+
+
+def cl_29_partition_even_odd_stable(lst: List[int]) -> Tuple[List[int], List[int]]:
+    """
+    Category: String & Sequence Iteration | Tags: partition, stability | Difficulty: 2
 
-def cl41_count_substring(s: str, t: str) -> int:
-    """Return how many times string t appears in s (allow overlaps); do not use find()/count()."""
-    raise ValueError("todo: cl41_count_substring")
+    Return (evens, odds) as two NEW lists, preserving original relative order in each.
 
-
-def cl42_first_index(s: str, ch: str) -> int | None:
-    """Return index of first occurrence of single-character ch in s, or None if absent; no index()/find()."""
-    raise ValueError("todo: cl42_first_index")
-
-
-def cl43_run_length_encode(s: str) -> str:
-    """Return run-length encoding, e.g., 'aaabb' -> 'a3b2'; singletons still include '1'."""
-    raise ValueError("todo: cl43_run_length_encode")
-
-
-def cl44_has_increasing_triplet(nums: list[int]) -> bool:
-    """Return True if there exist i<j<k with nums[i] < nums[j] < nums[k] (O(n) or O(n^2) allowed)."""
-    raise ValueError("todo: cl44_has_increasing_triplet")
-
-
-def cl45_all_unique_chars(s: str) -> bool:
-    """Return True iff all characters in s are unique; do not use set()."""
-    raise ValueError("todo: cl45_all_unique_chars")
-
-
-# ------------------ Mixed challenges (46–50) ------------------
-
-def cl46_bounded_while_sum(limit: int) -> int:
-    """Using a while-loop, sum 1+2+...+k while the running total <= limit; return the final sum (<= limit)."""
-    raise ValueError("todo: cl46_bounded_while_sum")
-
-
-def cl47_two_sum_exists(nums: list[int], target: int) -> bool:
-    """Return True if there exist i!=j with nums[i]+nums[j]==target; O(n^2) nested loops, no sets/dicts."""
-    raise ValueError("todo: cl47_two_sum_exists")
-
-
-def cl48_matrix_trace(mat: list[list[int]]) -> int:
-    """Return sum of the main diagonal entries of a square matrix mat using loops (no sum() on slices)."""
-    raise ValueError("todo: cl48_matrix_trace")
-
-
-def cl49_remove_consecutive_duplicates(s: str) -> str:
-    """Return s with any run of repeated characters collapsed to a single character."""
-    raise ValueError("todo: cl49_remove_consecutive_duplicates")
-
-
-def cl50_is_sorted_non_decreasing(nums: list[int]) -> bool:
-    """Return True iff nums is sorted in non-decreasing order using a loop and comparisons."""
-    raise ValueError("todo: cl50_is_sorted_non_decreasing")
-
-# End of file
+    Examples:
+        >>> cl_29_partition_even_odd_stable([5,2,4,7,6])
+        ([2, 4, 6], [5, 7])
+        >>> cl_29_partition_even_odd_stable([])
+        ([], [])
+    """
+    raise ValueError("todo")
+
+
+def cl_30_merge_two_sorted(a: List[int], b: List[int]) -> List[int]:
+    """
+    Category: String & Sequence Iteration | Tags: merge, two_pointer | Difficulty: 3
+
+    Merge two sorted lists (non-decreasing) into a new sorted list (like the merge step of merge sort).
+
+    Examples:
+        >>> cl_30_merge_two_sorted([1,3,5], [2,2,4,6])
+        [1, 2, 2, 3, 4, 5, 6]
+        >>> cl_30_merge_two_sorted([], [1,2])
+        [1, 2]
+    """
+    raise ValueError("todo")
+
+
+# =====================================================================================
+# 4) Patterns & Grids (ASCII Art)
+# =====================================================================================
+
+def cl_16_triangle_pattern(n: int) -> str:
+    """
+    Category: Patterns & Grids (ASCII Art) | Tags: pattern_print, triangle | Difficulty: 1
+
+    Produce a left-justified triangle of '*' with rows 1..n (newline-separated). For n <= 0, return "".
+
+    Examples:
+        >>> print(cl_16_triangle_pattern(3))
+        *
+        **
+        ***
+        <BLANKLINE>
+        >>> cl_16_triangle_pattern(0)
+        ''
+    """
+    raise ValueError("todo")
+
+
+def cl_17_hollow_box(w: int, h: int) -> str:
+    """
+    Category: Patterns & Grids (ASCII Art) | Tags: pattern_print, rectangle, hollow | Difficulty: 3
+
+    Return a hollow rectangle of '*' of width w and height h using newline separators.
+    For w <= 0 or h <= 0, return "".
+
+    Example (w=5, h=4):
+        *****
+        *   *
+        *   *
+        *****
+
+    Examples:
+        >>> print(cl_17_hollow_box(5, 4))
+        *****
+        *   *
+        *   *
+        *****
+        <BLANKLINE>
+        >>> cl_17_hollow_box(0, 3)
+        ''
+    """
+    raise ValueError("todo")
+
+
+def cl_18_checkerboard(n: int, m: int) -> str:
+    """
+    Category: Patterns & Grids (ASCII Art) | Tags: pattern_print, grid | Difficulty: 2
+
+    Return an n-by-m checkerboard string with 'X' and 'O', top-left 'X', rows separated by newlines.
+    For non-positive n or m, return "".
+
+    Examples:
+        >>> print(cl_18_checkerboard(2, 4))
+        XOXO
+        OXOX
+        <BLANKLINE>
+        >>> cl_18_checkerboard(1, 1)
+        'X'
+    """
+    raise ValueError("todo")
+
+
+def cl_19_right_aligned_triangle(n: int, ch: str = "#") -> str:
+    """
+    Category: Patterns & Grids (ASCII Art) | Tags: pattern_print, align | Difficulty: 2
+
+    Return a right-aligned triangle with rows 1..n of the given single-character 'ch'.
+    For n <= 0, return "".
+
+    Examples:
+        >>> print(cl_19_right_aligned_triangle(4, "$"))
+           $
+          $$
+         $$$
+        $$$$
+        <BLANKLINE>
+        >>> cl_19_right_aligned_triangle(0)
+        ''
+    """
+    raise ValueError("todo")
+
+
+def cl_20_diamond_odd(n: int) -> str:
+    """
+    Category: Patterns & Grids (ASCII Art) | Tags: pattern_print, diamond, symmetry | Difficulty: 4
+
+    Return a diamond of '*' with maximal width n, where n must be odd and >= 1.
+    If n is even or n < 1, raise ValueError.
+
+    Example for n=5:
+      *
+     ***
+    *****
+     ***
+      *
+
+    Examples:
+        >>> print(cl_20_diamond_odd(3))
+         *
+        ***
+         *
+        <BLANKLINE>
+    """
+    raise ValueError("todo")
+
+
+# =====================================================================================
+# 5) Lists of Lists (Table-ish)
+# =====================================================================================
+
+def cl_21_multiplication_table(n: int) -> List[List[int]]:
+    """
+    Category: Lists of Lists (Table-ish) | Tags: table, nested_loops | Difficulty: 2
+
+    Return the n-by-n multiplication table as a list of lists where cell [i][j] == (i+1)*(j+1).
+    For n <= 0, return [].
+
+    Examples:
+        >>> cl_21_multiplication_table(1)
+        [[1]]
+        >>> cl_21_multiplication_table(3)
+        [[1, 2, 3],
+         [2, 4, 6],
+         [3, 6, 9]]
+    """
+    raise ValueError("todo")
+
+
+def cl_22_fizzbuzz(n: int) -> List[str]:
+    """
+    Category: Lists of Lists (Table-ish) | Tags: classic, iteration | Difficulty: 1
+
+    Return the classic FizzBuzz sequence for 1..n as a list of strings:
+      - 'FizzBuzz' if multiple of 3 and 5
+      - 'Fizz'     if multiple of 3 only
+      - 'Buzz'     if multiple of 5 only
+      - the number itself otherwise
+
+    Examples:
+        >>> cl_22_fizzbuzz(5)
+        ['1', '2', 'Fizz', '4', 'Buzz']
+        >>> cl_22_fizzbuzz(0)
+        []
+    """
+    raise ValueError("todo")
