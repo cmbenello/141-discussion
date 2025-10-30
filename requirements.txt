@@ -1,0 +1,7 @@
+# Essential Python dependencies for the project
+pytest>=8.0.0
+typing-extensions>=4.10.0
+
+# Optional developer utilities for code formatting and import sorting
+black>=24.0.0
+isort>=5.13.0
